@@ -1,4 +1,4 @@
-package cl.pfranccino.weather.ui.theme
+package cl.pfranccino.news.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

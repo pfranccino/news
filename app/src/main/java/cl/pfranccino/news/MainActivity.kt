@@ -1,4 +1,4 @@
-package cl.pfranccino.weather
+package cl.pfranccino.news
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,14 +14,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import cl.pfranccino.weather.ui.theme.WeatherTheme
+import cl.pfranccino.news.ui.theme.WeatherTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherTheme {
-
+                Column {
+                    InformationItemNews(
+                        "How AI is shaping the future of business",
+                        "By Sarah E.Needleman, Wall Street Journal"
+                    )
+                    InformationAboutPublication(
+                        views = "1.2k",
+                        publicationTime = "3 hours",
+                        sentiment = "Negative"
+                    )
+                }
             }
         }
     }

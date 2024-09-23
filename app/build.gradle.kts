@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "cl.pfranccino.weather"
+    namespace = "cl.pfranccino.news"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "cl.pfranccino.weather"
+        applicationId = "cl.pfranccino.news"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

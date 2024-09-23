@@ -1,4 +1,4 @@
-package cl.pfranccino.weather
+package cl.pfranccino.news
 
 import org.junit.Test
 
