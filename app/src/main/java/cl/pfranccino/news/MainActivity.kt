@@ -10,12 +10,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import cl.pfranccino.news.ui.theme.GetNewsViewModel
 import cl.pfranccino.news.ui.theme.WeatherTheme
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun InformationItemNews(title: String, subtitle: String) {
+    val viewModel : GetNewsViewModel = hiltViewModel()
+
+    LaunchedEffect( Unit) {
+        viewModel.getNews()
+    }
     Column(
         modifier = Modifier.padding(horizontal = 4.dp)
     ) {

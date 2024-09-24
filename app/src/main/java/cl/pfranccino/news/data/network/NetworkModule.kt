@@ -1,6 +1,6 @@
 package cl.pfranccino.news.data.network
 
-import cl.pfranccino.news.either.EitherCallAdapterFactory
+import cl.pfranccino.news.utils.either.EitherCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +45,7 @@ object NetworkModule {
     private fun apiKeyAsQuery(chain: Interceptor.Chain) = chain.proceed(
         chain.request()
             .newBuilder()
-            .url(chain.request().url.newBuilder().addQueryParameter("api-key", "43d85f37d86445c1952433346423256d").build())
+            .url(chain.request().url.newBuilder().addQueryParameter("apiKey", "43d85f37d86445c1952433346423256d").build())
             .build()
     )
 }

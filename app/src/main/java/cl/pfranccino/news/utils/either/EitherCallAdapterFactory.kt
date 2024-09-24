@@ -1,4 +1,4 @@
-package cl.pfranccino.news.either
+package cl.pfranccino.news.utils.either
 
 import retrofit2.CallAdapter
 import retrofit2.Call

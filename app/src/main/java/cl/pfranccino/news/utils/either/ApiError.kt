@@ -1,4 +1,4 @@
-package cl.pfranccino.news.either
+package cl.pfranccino.news.utils.either
 
 data class ApiError(
     val status: String,

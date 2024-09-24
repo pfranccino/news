@@ -1,4 +1,4 @@
-package cl.pfranccino.news.either
+package cl.pfranccino.news.utils.either
 
 import com.google.gson.Gson
 import retrofit2.Call
