@@ -1,6 +1,7 @@
 package cl.pfranccino.news.utils.either
 
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 sealed class Either<out L, out R> {
     data class Left<out L>(val value: L) : Either<L, Nothing>()
@@ -8,16 +9,6 @@ sealed class Either<out L, out R> {
 
     fun isLeft() = this is Left
     fun isRight() = this is Right
-
-    suspend fun <L, R, T> Either<L, R>.coEither(
-        leftOperation: suspend (L) -> T,
-        rightOperation: suspend (R) -> T
-    ): T = coroutineScope {
-        when (this@coEither) {
-            is Left -> leftOperation(value)
-            is Right -> rightOperation(value)
-        }
-    }
 
     fun fold(leftOp: (L) -> Unit, rightOp: (R) -> Unit) {
         when (this) {

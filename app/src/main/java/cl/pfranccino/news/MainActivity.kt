@@ -16,10 +16,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import cl.pfranccino.news.ui.theme.GetNewsViewModel
+import cl.pfranccino.news.ui.home.GetNewsViewModel
 import cl.pfranccino.news.ui.theme.WeatherTheme
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

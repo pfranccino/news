@@ -1,6 +1,5 @@
-package cl.pfranccino.news.ui.theme
+package cl.pfranccino.news.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cl.pfranccino.news.domain.repository.NewsRepository
@@ -13,10 +12,10 @@ class GetNewsViewModel @Inject constructor(
     private val repository: NewsRepository
 ) : ViewModel() {
 
-    fun getNews(){
+    suspend fun getNews(){
         viewModelScope.launch {
             repository.getAllNews().fold({
-                
+
             },{
              it
             })
