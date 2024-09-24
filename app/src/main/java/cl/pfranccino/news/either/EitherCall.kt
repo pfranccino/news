@@ -1,6 +1,5 @@
 package cl.pfranccino.news.either
 
-import cl.pfranccino.news.core.Either
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback

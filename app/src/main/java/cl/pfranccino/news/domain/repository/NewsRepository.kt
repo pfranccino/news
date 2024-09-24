@@ -1,4 +1,4 @@
-package cl.pfranccino.news.domain
+package cl.pfranccino.news.domain.repository
 
 
 interface NewsRepository {

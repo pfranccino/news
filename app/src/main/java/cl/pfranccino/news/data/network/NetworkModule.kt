@@ -1,5 +1,6 @@
 package cl.pfranccino.news.data.network
 
+import cl.pfranccino.news.either.EitherCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,6 +32,7 @@ object NetworkModule {
             .baseUrl("https://newsapi.org/v2/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(EitherCallAdapterFactory())
             .build()
     }
 

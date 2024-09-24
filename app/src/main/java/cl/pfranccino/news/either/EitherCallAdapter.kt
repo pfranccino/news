@@ -1,6 +1,5 @@
 package cl.pfranccino.news.either
 
-import cl.pfranccino.news.core.Either
 import retrofit2.Call
 import retrofit2.CallAdapter
 import java.lang.reflect.Type

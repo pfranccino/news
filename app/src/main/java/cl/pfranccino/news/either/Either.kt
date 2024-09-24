@@ -1,4 +1,4 @@
-package cl.pfranccino.news.core
+package cl.pfranccino.news.either
 
 import kotlinx.coroutines.coroutineScope
 
