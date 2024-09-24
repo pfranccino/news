@@ -20,7 +20,6 @@ object NetworkModule {
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .addInterceptor( ErrorInterceptor())
             .addInterceptor { apiKeyAsQuery(it) }
             .build()
     }

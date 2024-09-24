@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.hilt)
+    id("com.google.dagger.hilt.android") version "2.48"
     id("kotlin-kapt")
 }
 
@@ -20,6 +20,13 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+    }
+    hilt {
+        enableAggregatingTask = true
+    }
+
+    kapt {
+        correctErrorTypes = true
     }
 
     buildTypes {
@@ -52,6 +59,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -62,7 +70,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.coil.compose)
-    implementation(libs.hilt.android)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp.logging)
