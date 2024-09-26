@@ -16,7 +16,7 @@ import coil.compose.AsyncImage
 
 @Composable
 fun ItemNewsScreen(new: Article) {
-    Column(modifier = Modifier.padding(start = Dimens.spacing12, end = Dimens.spacing12, bottom = Dimens.spacing8, top = Dimens.spacing4)) {
+    Column(modifier = Modifier.padding(start = Dimens.spacing16, end = Dimens.spacing16, bottom = Dimens.spacing8, top = Dimens.spacing8)) {
         AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
@@ -27,11 +27,6 @@ fun ItemNewsScreen(new: Article) {
         InformationItemNewsScreen(
             new.title,
             new.description
-        )
-        InformationAboutPublicationScreen(
-            views = "1.2k",
-            publicationTime = "3 hours",
-            sentiment = "Negative"
         )
     }
 }
