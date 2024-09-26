@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -19,4 +20,10 @@ fun InformationAboutPublicationScreen(views: String, publicationTime: String, se
         Spacer(modifier = Modifier.height(2.dp))
         Text(" AI sentiment: $sentiment", fontSize = 6.sp)
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewInformationAboutPublication(){
+    InformationAboutPublicationScreen(views = "1.2k", publicationTime = "6" , sentiment = "Positive" )
 }
