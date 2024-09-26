@@ -7,8 +7,6 @@ interface GetNewsContract {
 
     sealed interface UiAction {
         data object OnLoadNews : UiAction
-        data object OnShowNews : UiAction
-        data object OnGoToNewDetail : UiAction
     }
 
     sealed interface SideEffect {

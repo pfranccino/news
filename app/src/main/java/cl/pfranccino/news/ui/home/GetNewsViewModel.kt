@@ -20,12 +20,7 @@ class GetNewsViewModel @Inject constructor(
 
     override fun onAction(uiAction: GetNewsContract.UiAction) {
         when(uiAction){
-            GetNewsContract.UiAction.OnGoToNewDetail -> TODO()
             GetNewsContract.UiAction.OnLoadNews -> getNews()
-            GetNewsContract.UiAction.OnShowNews -> {
-
-
-            }
         }
     }
 
