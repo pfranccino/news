@@ -11,12 +11,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import cl.pfranccino.news.ui.home.GetNewsContract
 import cl.pfranccino.news.ui.home.GetNewsViewModel
+import cl.pfranccino.news.ui.home.HomeScreen
 import cl.pfranccino.news.ui.theme.WeatherTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,66 +30,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherTheme {
-                Column {
-                    InformationItemNews(
-                        "How AI is shaping the future of business",
-                        "By Sarah E.Needleman, Wall Street Journal"
-                    )
-                    InformationAboutPublication(
-                        views = "1.2k",
-                        publicationTime = "3 hours",
-                        sentiment = "Negative"
-                    )
-                }
+                HomeScreen()
             }
         }
-    }
-}
-
-
-@Composable
-fun InformationItemNews(title: String, subtitle: String) {
-    val viewModel : GetNewsViewModel = hiltViewModel()
-
-    LaunchedEffect( Unit) {
-        viewModel.getNews()
-    }
-    Column(
-        modifier = Modifier.padding(horizontal = 4.dp)
-    ) {
-        Text(text = title, fontSize = 8.sp)
-        Spacer(modifier = Modifier.height(2.dp))
-        Text(text = subtitle, fontSize = 6.sp)
-    }
-}
-
-@Composable
-fun InformationAboutPublication(views: String, publicationTime: String, sentiment: String) {
-    Row(modifier = Modifier.padding(horizontal = 4.dp)) {
-        Text("$views views -", fontSize = 6.sp)
-        Spacer(modifier = Modifier.height(2.dp))
-        Text(" $publicationTime hours ago -", fontSize = 6.sp)
-        Spacer(modifier = Modifier.height(2.dp))
-        Text(" AI sentiment: $sentiment", fontSize = 6.sp)
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    WeatherTheme {
-        Column {
-            InformationItemNews(
-                "How AI is shaping the future of business",
-                "By Sarah E.Needleman, Wall Street Journal"
-            )
-            InformationAboutPublication(
-                views = "1.2k",
-                publicationTime = "3 hours",
-                sentiment = "Negative"
-            )
-        }
-
     }
 }

@@ -6,25 +6,26 @@ import cl.pfranccino.news.data.model.SourceDTO
 import cl.pfranccino.news.domain.model.Article
 import cl.pfranccino.news.domain.model.NewsResponse
 import cl.pfranccino.news.domain.model.Source
+import cl.pfranccino.news.utils.orZero
 
 fun NewsResponseDTO?.toDomain() = NewsResponse(
-    status = this?.status ?: "",
-    totalResults = this?.totalResults ?: 0,
+    status = this?.status.orEmpty(),
+    totalResults = this?.totalResults.orZero(),
     articles = this?.articles?.map { it.toDomain() } ?: listOf()
 )
 
 fun ArticleDTO?.toDomain() = Article(
     source = this?.source.toDomainModel(),
-    author = this?.author ?: "",
-    title = this?.title ?: "",
-    description = this?.description ?: "",
-    url = this?.url ?: "",
-    urlToImage = this?.urlToImage ?: "",
-    publishedAt = this?.publishedAt ?:"",
-    content = this?.content ?: ""
+    author = this?.author.orEmpty(),
+    title = this?.title.orEmpty(),
+    description = this?.description.orEmpty(),
+    url = this?.url.orEmpty(),
+    urlToImage = this?.urlToImage.orEmpty(),
+    publishedAt = this?.publishedAt.orEmpty(),
+    content = this?.content.orEmpty()
 )
 
 fun SourceDTO?.toDomainModel() = Source(
-    id = this?.id ?: "",
-    name =  this?.name ?: ""
+    id = this?.id.orEmpty(),
+    name =  this?.name.orEmpty()
 )

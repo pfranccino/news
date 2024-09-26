@@ -15,7 +15,7 @@ class GetNewsViewModel @Inject constructor(
     private val repository: NewsRepository
 ) : ViewModel(),
     MVI<GetNewsContract.UiState, GetNewsContract.UiAction, GetNewsContract.SideEffect> by mvi(
-        GetNewsContract.UiState(null)
+        GetNewsContract.UiState()
     ) {
 
     override fun onAction(uiAction: GetNewsContract.UiAction) {
@@ -23,6 +23,7 @@ class GetNewsViewModel @Inject constructor(
             GetNewsContract.UiAction.OnGoToNewDetail -> TODO()
             GetNewsContract.UiAction.OnLoadNews -> getNews()
             GetNewsContract.UiAction.OnShowNews -> {
+
 
             }
         }
@@ -32,13 +33,12 @@ class GetNewsViewModel @Inject constructor(
         updateUiState { copy( news = newsResponse)}
     }
 
-    fun getNews() {
+    private fun getNews() {
         viewModelScope.launch {
             repository.getAllNews().fold({
 
             }, {
                 updateNews(it)
-                onAction(GetNewsContract.UiAction.OnShowNews)
             })
         }
     }
