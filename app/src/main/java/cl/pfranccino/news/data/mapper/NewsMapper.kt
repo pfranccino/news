@@ -11,7 +11,7 @@ import cl.pfranccino.news.utils.orZero
 fun NewsResponseDTO?.toDomain() = NewsResponse(
     status = this?.status.orEmpty(),
     totalResults = this?.totalResults.orZero(),
-    articles = this?.articles?.map { it.toDomain() } ?: listOf()
+    articles = this?.articles?.filter { it.urlToImage?.isNotEmpty() == true }?.map { it.toDomain() } ?: listOf()
 )
 
 fun ArticleDTO?.toDomain() = Article(

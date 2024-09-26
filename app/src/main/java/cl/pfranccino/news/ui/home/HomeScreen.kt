@@ -28,7 +28,7 @@ fun HomeScreen() {
 }
 
 @Composable
-fun HomeScreen(
+private fun HomeScreen(
     uiState: GetNewsContract.UiState,
     sideEffect: Flow<GetNewsContract.SideEffect>,
 ) {
