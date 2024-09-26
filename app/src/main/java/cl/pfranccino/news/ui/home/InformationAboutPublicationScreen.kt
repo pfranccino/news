@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun InformationAboutPublicationScreen(views: String, publicationTime: String, sentiment: String) {
-    Row(modifier = Modifier.padding(horizontal = 4.dp)) {
+    Row(modifier = Modifier.padding(top = 4.dp)) {
         Text("$views views -", fontSize = 6.sp)
         Spacer(modifier = Modifier.height(2.dp))
         Text(" $publicationTime hours ago -", fontSize = 6.sp)
