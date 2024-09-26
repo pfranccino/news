@@ -7,6 +7,6 @@ import cl.pfranccino.news.utils.either.Either
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("everything?q=bitcoin")
+    @GET("everything?q=IA")
     suspend fun getNews() : Either<ApiError, NewsResponseDTO>
 }

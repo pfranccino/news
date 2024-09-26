@@ -1,5 +1,6 @@
 package cl.pfranccino.news.ui.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cl.pfranccino.news.domain.model.NewsResponse
@@ -31,7 +32,7 @@ class GetNewsViewModel @Inject constructor(
     private fun getNews() {
         viewModelScope.launch {
             repository.getAllNews().fold({
-
+                Log.e("GetNewsViewModel", "$it")
             }, {
                 updateNews(it)
             })
