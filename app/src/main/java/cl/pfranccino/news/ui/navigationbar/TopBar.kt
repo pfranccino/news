@@ -8,6 +8,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import cl.pfranccino.news.ui.theme.NewsTextStyles
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -21,4 +22,10 @@ fun TopBar() {
             }
         }
     )
+}
+
+@Preview
+@Composable
+fun PreviewTopBar() {
+    TopBar()
 }
