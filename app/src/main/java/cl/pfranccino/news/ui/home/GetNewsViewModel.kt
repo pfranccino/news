@@ -34,7 +34,6 @@ class GetNewsViewModel @Inject constructor(
 
     private fun getNews() {
         viewModelScope.launch {
-            Log.e("GetNewsViewModel", uiState.value.isLoading.toString())
             repository.getAllNews().fold({
                 Log.e("GetNewsViewModel", "$it")
             }, {
