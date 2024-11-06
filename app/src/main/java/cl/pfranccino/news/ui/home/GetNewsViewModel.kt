@@ -9,6 +9,7 @@ import cl.pfranccino.news.utils.mvi.MVI
 import cl.pfranccino.news.utils.mvi.mvi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,14 +23,33 @@ class GetNewsViewModel @Inject constructor(
     override fun onAction(uiAction: GetNewsContract.UiAction) {
         when(uiAction){
             GetNewsContract.UiAction.OnLoadNews -> {
+                Log.e("ViewModel", "Iniciando carga, setting loading = true")
                 updateUiState { copy(isLoading = true) }
                 getNews()
+            }
+
+            is GetNewsContract.UiAction.OnNewsLoadedWithCategory -> {
+                Log.e("ViewModel", "Categoría seleccionada: ${uiAction.category}")
+                updateUiState { copy(isLoading = true) }
+                getNewsByCategory(uiAction.category)
+
             }
         }
     }
 
     private fun updateNews(newsResponse: NewsResponse){
+        Log.e("ViewModel", "Actualizando noticias, setting loading = false")
         updateUiState { copy( news = newsResponse, isLoading = false)}
+    }
+
+    private fun getNewsByCategory(category: String) {
+        viewModelScope.launch {
+            repository.getNewsByCategory(category.toUpperCase(Locale.getDefault())).fold({
+                Log.e("GetNewsViewModel", "$it")
+            }, {
+                updateNews(it)
+            })
+        }
     }
 
     private fun getNews() {

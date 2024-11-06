@@ -7,6 +7,7 @@ interface GetNewsContract {
 
     sealed interface UiAction {
         data object OnLoadNews : UiAction
+        data class OnNewsLoadedWithCategory(val category: String) : UiAction
     }
 
     sealed interface SideEffect {

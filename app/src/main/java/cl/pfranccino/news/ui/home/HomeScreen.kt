@@ -1,6 +1,5 @@
 package cl.pfranccino.news.ui.home
 
-import android.util.Log
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,10 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import cl.pfranccino.news.domain.model.Article
 import cl.pfranccino.news.domain.model.NewsResponse
@@ -33,7 +30,13 @@ fun HomeScreen(paddingValues: PaddingValues) {
     LaunchedEffect(Unit) {
         viewModel.onAction(uiAction = GetNewsContract.UiAction.OnLoadNews)
     }
-    HomeScreen(paddingValues, uiState, viewModel.sideEffect)
+    HomeScreen(paddingValues, uiState, viewModel.sideEffect) {
+        if (!it.isNullOrBlank()) {
+            viewModel.onAction(GetNewsContract.UiAction.OnNewsLoadedWithCategory(it))
+        } else {
+            viewModel.onAction(GetNewsContract.UiAction.OnLoadNews)
+        }
+    }
 }
 
 @Composable
@@ -41,12 +44,13 @@ private fun HomeScreen(
     paddingValues: PaddingValues,
     uiState: GetNewsContract.UiState,
     sideEffect: Flow<GetNewsContract.SideEffect>,
+    onCategoryClick : (String?) -> Unit
 ) {
     val categories =
         listOf("business", "entertainment", "general", "health", "science", "sports", "technology")
     Column(modifier = Modifier.padding(paddingValues)) {
         NewsCategoryFilters(categories, onCategorySelected = {
-            Log.e("HomeScreen", it.toString())
+            onCategoryClick(it)
         })
         if (uiState.isLoading) {
             repeat((5..10).random()) {
@@ -67,7 +71,6 @@ fun HomeScreenNews(uiState: GetNewsContract.UiState) {
             .fillMaxSize(),
         content = {
             items(uiState.news.articles) { art ->
-                Log.e("HomeScreen", uiState.isLoading.toString())
                 ItemNewsScreen(new = art)
             }
         }
@@ -100,7 +103,8 @@ fun HomeScreenPreview() {
         HomeScreen(
             paddingValues = PaddingValues(),
             uiState = sampleUiState,
-            sideEffect = flowOf()
+            sideEffect = flowOf(),
+            {}
         )
     }
 }

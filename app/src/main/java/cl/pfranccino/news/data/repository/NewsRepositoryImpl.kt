@@ -16,4 +16,10 @@ class NewsRepositoryImpl @Inject constructor(private val apiService: ApiService)
             it.toDomain()
         }
     }
+
+    override suspend fun getNewsByCategory(category: String): Either<ApiError, NewsResponse> {
+        return apiService.getNewsByCategory(category).map {
+                it.toDomain()
+            }
+        }
 }

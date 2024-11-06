@@ -8,4 +8,6 @@ import cl.pfranccino.news.utils.either.Either
 
 interface NewsRepository {
     suspend fun getAllNews() : Either<ApiError, NewsResponse>
+
+    suspend fun getNewsByCategory(category: String) : Either<ApiError, NewsResponse>
 }
