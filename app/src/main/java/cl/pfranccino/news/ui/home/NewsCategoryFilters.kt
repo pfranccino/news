@@ -14,6 +14,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SelectableChipColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,35 +31,34 @@ import cl.pfranccino.news.ui.theme.NewsTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewsCategoryFilters(
-    onCategorySelected: (Set<String>) -> Unit,
-    modifier: Modifier = Modifier
+    categories: List<String>,
+    onCategorySelected: (String?) -> Unit
 ) {
-    val categories =
-        listOf("business", "entertainment", "general", "health", "science", "sports", "technology")
-    var selectedCategories by remember { mutableStateOf(emptySet<String>()) }
+    var selectedCategory by remember { mutableStateOf<String?>(null) }
 
     LazyRow(
-        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        modifier = Modifier.fillMaxWidth()
     ) {
-
         items(categories) { category ->
-            val selected = selectedCategories.contains(category)
             FilterChip(
                 onClick = {
-                    selectedCategories = if (selected) {
-                        selectedCategories - category
+                    selectedCategory = if (selectedCategory == category) {
+                        null
                     } else {
-                        selectedCategories + category
+                        category
                     }
-                    onCategorySelected(selectedCategories)
+                    onCategorySelected(selectedCategory)
                 },
                 label = {
-                    Text(text = category.replaceFirstChar { it.uppercase() } , style = NewsTextStyles.categoryChip)
+                    Text(
+                        text = category.replaceFirstChar { it.uppercase() },
+                        style = NewsTextStyles.categoryChip
+                    )
                 },
-                selected = selected,
-                leadingIcon = if (selected) {
+                selected = selectedCategory == category,
+                leadingIcon = if (selectedCategory == category) {
                     {
                         Icon(
                             imageVector = Icons.Filled.Done,
@@ -68,16 +68,31 @@ fun NewsCategoryFilters(
                     }
                 } else {
                     null
-                })
+                },
+                colors = FilterChipDefaults.filterChipColors(
+                    selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                    selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    selectedLeadingIconColor = MaterialTheme.colorScheme.onPrimaryContainer
+                ),
+                border = FilterChipDefaults.filterChipBorder(
+                    borderColor = MaterialTheme.colorScheme.outline,
+                    selectedBorderColor = MaterialTheme.colorScheme.primary,
+                    disabledBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.12f),
+                    disabledSelectedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
+                    borderWidth = 1.dp,
+                    selectedBorderWidth = 2.dp
+                )
+            )
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
 fun NewsCategoryFiltersPreview() {
     NewsTheme {
-        NewsCategoryFilters(onCategorySelected = {})
+        val categories =
+            listOf("business", "entertainment", "general", "health", "science", "sports", "technology")
+        NewsCategoryFilters( categories =categories , onCategorySelected = {})
     }
 }

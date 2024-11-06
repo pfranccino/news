@@ -21,16 +21,20 @@ class GetNewsViewModel @Inject constructor(
 
     override fun onAction(uiAction: GetNewsContract.UiAction) {
         when(uiAction){
-            GetNewsContract.UiAction.OnLoadNews -> getNews()
+            GetNewsContract.UiAction.OnLoadNews -> {
+                updateUiState { copy(isLoading = true) }
+                getNews()
+            }
         }
     }
 
     private fun updateNews(newsResponse: NewsResponse){
-        updateUiState { copy( news = newsResponse)}
+        updateUiState { copy( news = newsResponse, isLoading = false)}
     }
 
     private fun getNews() {
         viewModelScope.launch {
+            Log.e("GetNewsViewModel", uiState.value.isLoading.toString())
             repository.getAllNews().fold({
                 Log.e("GetNewsViewModel", "$it")
             }, {

@@ -26,14 +26,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 @Composable
-fun HomeScreen(paddingValues : PaddingValues) {
+fun HomeScreen(paddingValues: PaddingValues) {
     val viewModel: GetNewsViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.onAction(uiAction = GetNewsContract.UiAction.OnLoadNews)
     }
-    HomeScreen(paddingValues,uiState,viewModel.sideEffect)
+    HomeScreen(paddingValues, uiState, viewModel.sideEffect)
 }
 
 @Composable
@@ -42,10 +42,24 @@ private fun HomeScreen(
     uiState: GetNewsContract.UiState,
     sideEffect: Flow<GetNewsContract.SideEffect>,
 ) {
+    val categories =
+        listOf("business", "entertainment", "general", "health", "science", "sports", "technology")
     Column(modifier = Modifier.padding(paddingValues)) {
-    NewsCategoryFilters(onCategorySelected = {
-        Log.e("HomeScreen", it.toString())
-    })
+        NewsCategoryFilters(categories, onCategorySelected = {
+            Log.e("HomeScreen", it.toString())
+        })
+        if (uiState.isLoading) {
+            repeat((5..10).random()) {
+                ItemNewsScreenSkeleton()
+            }
+        } else {
+            HomeScreenNews(uiState)
+        }
+    }
+}
+
+@Composable
+fun HomeScreenNews(uiState: GetNewsContract.UiState) {
     LazyColumn(
         flingBehavior = ScrollableDefaults.flingBehavior(),
         state = rememberLazyListState(),
@@ -53,18 +67,18 @@ private fun HomeScreen(
             .fillMaxSize(),
         content = {
             items(uiState.news.articles) { art ->
+                Log.e("HomeScreen", uiState.isLoading.toString())
                 ItemNewsScreen(new = art)
             }
         }
     )
-    }
 }
 
 
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    val sampleArticles = List(5) {
+    val sampleArticles = List(7) {
         Article(
             Source("", ""),
             "Paul Ayala",
