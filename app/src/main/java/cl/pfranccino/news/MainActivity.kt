@@ -9,10 +9,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.ui.NavDisplay
 import cl.pfranccino.news.ui.navigationbar.BottomBar
 import cl.pfranccino.news.ui.navigationbar.BottomNavItem
 import cl.pfranccino.news.ui.navigationbar.TopBar
@@ -25,27 +29,58 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NewsTheme{
-            val navController = rememberNavController()
-            Scaffold(
-                bottomBar = { BottomBar(navController) },
-                topBar = { TopBar()}
-            ) { padding ->
-                NavHost(
-                    navController = navController,
-                    startDestination = BottomNavItem.Home.route,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    composable(BottomNavItem.Home.route) { HomeScreen(padding) }
-                    composable(BottomNavItem.Discover.route) { DiscoverScreen(padding) }
-                    composable(BottomNavItem.Saved.route) { SavedScreen(padding) }
-                    composable(BottomNavItem.Profile.route) { ProfileScreen(padding) }
-                }
-            }
-            }
+            NewNavigation()
         }
     }
 }
+
+
+
+@Composable
+fun NewNavigation(){
+    val backStack = remember { mutableStateListOf<BottomNavItem>(BottomNavItem.Home) }
+
+    NewsTheme {
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            topBar = { TopBar() },
+            bottomBar = {
+                BottomBar(
+                    currentItem = backStack.lastOrNull() ?: BottomNavItem.Home,
+                    onItemSelected = { item ->
+                        if (backStack.lastOrNull() != item) {
+                            backStack.clear()
+                            backStack.add(item)
+                        }
+                    }
+                )
+            }
+        ) { paddingValues ->
+            NavDisplay(
+                backStack = backStack,
+                onBack = { backStack.removeLastOrNull() },
+                entryProvider = { item ->
+                    when(item){
+                        BottomNavItem.Discover -> NavEntry(item){
+                            DiscoverScreen(padding = paddingValues)
+                        }
+                        BottomNavItem.Home -> NavEntry(item){
+                            HomeScreen(paddingValues = paddingValues)
+                        }
+                        BottomNavItem.Profile -> NavEntry(item){
+                            ProfileScreen(padding = paddingValues)
+                        }
+                        BottomNavItem.Saved -> NavEntry(item){
+                            SavedScreen(padding = paddingValues)
+                        }
+                    }
+                }
+            )
+        }
+    }
+}
+
+
 
 @Composable
 fun DiscoverScreen(padding: PaddingValues) {

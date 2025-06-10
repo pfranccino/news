@@ -80,7 +80,9 @@ fun NewsCategoryFilters(
                     disabledBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.12f),
                     disabledSelectedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
                     borderWidth = 1.dp,
-                    selectedBorderWidth = 2.dp
+                    selectedBorderWidth = 2.dp,
+                    enabled = selectedCategory == category,
+                    selected = selectedCategory != null && selectedCategory != category
                 )
             )
         }

@@ -44,7 +44,7 @@ class GetNewsViewModel @Inject constructor(
 
     private fun getNewsByCategory(category: String) {
         viewModelScope.launch {
-            repository.getNewsByCategory(category.toUpperCase(Locale.getDefault())).fold({
+            repository.getNewsByCategory(category.uppercase(Locale.getDefault())).fold({
                 Log.e("GetNewsViewModel", "$it")
             }, {
                 updateNews(it)
