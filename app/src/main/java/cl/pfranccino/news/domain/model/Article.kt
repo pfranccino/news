@@ -1,6 +1,5 @@
 package cl.pfranccino.news.domain.model
 
-import cl.pfranccino.news.data.model.SourceDTO
 
 data class Article(
     val source: Source,

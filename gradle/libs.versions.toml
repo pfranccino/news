@@ -16,12 +16,18 @@ navigationCompose = "2.7.6"
 retrofit = "2.9.0"
 okhttp = "4.10.0"
 
+room_version = "2.7.1"
+coroutines = "1.8.1"
+
 # Navigation 3 versions (ACTUALIZADAS)
 nav3Core = "1.0.0-alpha01"
 lifecycleViewmodelNav3 = "1.0.0-alpha01"
 kotlinSerialization = "2.1.0"
 kotlinxSerializationCore = "1.8.1"
 ksp = "2.1.0-1.0.29"
+appcompat = "1.7.0"
+material = "1.12.0"
+jetbrainsKotlinJvm = "2.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +59,12 @@ androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runt
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
 androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -61,3 +73,5 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
