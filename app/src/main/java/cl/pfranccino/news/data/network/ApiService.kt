@@ -1,9 +1,9 @@
 package cl.pfranccino.news.data.network
 
 
+import cl.pfranccino.core.network.either.ApiError
+import cl.pfranccino.core.network.either.Either
 import cl.pfranccino.news.data.model.NewsResponseDTO
-import cl.pfranccino.news.utils.either.ApiError
-import cl.pfranccino.news.utils.either.Either
 import retrofit2.http.GET
 import retrofit2.http.Query
 

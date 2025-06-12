@@ -1,4 +1,4 @@
-package cl.pfranccino.news.utils.either
+package cl.pfranccino.core.network.either
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

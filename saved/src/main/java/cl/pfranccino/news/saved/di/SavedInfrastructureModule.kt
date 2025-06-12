@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import dagger.Bind
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.components.ViewModelComponent
@@ -15,6 +14,7 @@ import cl.pfranccino.news.saved.data.local.dao.SavedNewsDao
 import cl.pfranccino.news.saved.data.repository.SavedRepositoryImpl
 import cl.pfranccino.news.saved.domain.repository.SavedRepository
 import cl.pfranccino.news.saved.domain.usecase.*
+import dagger.Binds
 import javax.inject.Singleton
 
 
@@ -22,7 +22,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class SavedInfrastructureModule {
 
-    @Bind
+    @Binds
     @Singleton
     abstract fun bindSavedRepository(
         savedRepositoryImpl: SavedRepositoryImpl
@@ -55,13 +55,13 @@ abstract class SavedInfrastructureModule {
 @InstallIn(ViewModelComponent::class)
 abstract class SavedUseCaseModule {
 
-    @Bind
+    @Binds
     @ViewModelScoped
     abstract fun bindSaveNewsUseCase(
         saveNewsUseCaseImpl: SaveNewsUseCaseImpl
     ): SaveNewsUseCase
 
-    @Bind
+    @Binds
     @ViewModelScoped
     abstract fun bindSearchSavedNewsUseCase(
         searchSavedNewsUseCaseImpl: SearchSavedNewsUseCaseImpl

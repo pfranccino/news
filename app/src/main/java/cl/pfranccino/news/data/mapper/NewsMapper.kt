@@ -1,5 +1,6 @@
 package cl.pfranccino.news.data.mapper
 
+import cl.pfranccino.core.network.orZero
 import cl.pfranccino.news.data.model.ArticleDTO
 import cl.pfranccino.news.data.model.NewsResponseDTO
 import cl.pfranccino.news.data.model.SourceDTO
@@ -7,7 +8,6 @@ import cl.pfranccino.news.domain.model.Article
 import cl.pfranccino.news.domain.model.NewsResponse
 import cl.pfranccino.news.domain.model.Source
 import cl.pfranccino.news.saved.domain.model.SavedNews
-import cl.pfranccino.news.utils.orZero
 
 fun NewsResponseDTO?.toDomain() = NewsResponse(
     status = this?.status.orEmpty(),

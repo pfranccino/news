@@ -1,9 +1,8 @@
 package cl.pfranccino.news.domain.repository
 
-import cl.pfranccino.news.data.model.NewsResponseDTO
+import cl.pfranccino.core.network.either.ApiError
+import cl.pfranccino.core.network.either.Either
 import cl.pfranccino.news.domain.model.NewsResponse
-import cl.pfranccino.news.utils.either.ApiError
-import cl.pfranccino.news.utils.either.Either
 
 
 interface NewsRepository {

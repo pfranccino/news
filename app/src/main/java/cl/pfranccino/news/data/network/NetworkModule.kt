@@ -1,6 +1,6 @@
 package cl.pfranccino.news.data.network
 
-import cl.pfranccino.news.utils.either.EitherCallAdapterFactory
+import cl.pfranccino.core.network.either.EitherCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,7 +1,4 @@
-package cl.pfranccino.news.utils.either
-
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+package cl.pfranccino.core.network.either
 
 sealed class Either<out L, out R> {
     data class Left<out L>(val value: L) : Either<L, Nothing>()

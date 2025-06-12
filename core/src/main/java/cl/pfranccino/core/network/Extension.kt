@@ -1,4 +1,4 @@
-package cl.pfranccino.news.utils
+package cl.pfranccino.core.network
 
 // Función de extensión orZero para tipos numéricos
 fun Int?.orZero(): Int = this ?: 0

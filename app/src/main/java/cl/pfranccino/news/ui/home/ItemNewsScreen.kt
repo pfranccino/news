@@ -13,10 +13,10 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import cl.pfranccino.core.network.Dimens
 import cl.pfranccino.news.R
 import cl.pfranccino.news.domain.model.Article
 import cl.pfranccino.news.domain.model.Source
-import cl.pfranccino.news.utils.Dimens
 import coil.compose.AsyncImage
 
 @Composable

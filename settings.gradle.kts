@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "News"
 include(":app")
 include(":saved")
+include(":core")

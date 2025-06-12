@@ -1,4 +1,4 @@
-package cl.pfranccino.news.utils.mvi
+package cl.pfranccino.core.network.mvi
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel

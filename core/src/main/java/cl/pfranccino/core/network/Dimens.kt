@@ -1,4 +1,4 @@
-package cl.pfranccino.news.utils
+package cl.pfranccino.core.network
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp

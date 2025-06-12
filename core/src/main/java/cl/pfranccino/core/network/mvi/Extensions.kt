@@ -1,4 +1,4 @@
-package cl.pfranccino.news.utils.mvi
+package cl.pfranccino.core.network.mvi
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
